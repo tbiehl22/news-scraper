@@ -1,20 +1,18 @@
-<body class="container">
-  <h3 class="header">News Scraper with Mongoose</h3>
-  <div id="buttons">
-    <button class="btn" id="headline-sort">Sort By Headline</button>
-     {{!-- <button class="btn" id="more-articles">Get New Articles</button> --}}
-    
-  </div>
-  <table id="results">
-    <thead>
-      <tr>
-        <th id="title">Title</th>
-        <th id="link">Link</th>
-        <th id="image">Image</th>
-        <th id="summary">Summary</th>
-      </tr>
-    </thead>
-    <tbody id="tbody">
-    </tbody>
-  </table>
-  <script src="app.js"></script>
+{{#each articles}}
+<div class="story-body" id={{this._id}}>
+<h2>
+<a href="{{this.link}}" target="_blank">{{this.title}}</a>
+<form action="/save/{{this._id}}" method="POST">
+<button type="submit" class="status" value="{{this.status}}">{{this.status}}</button>
+{{#unless this.note}}
+<button type="button" class="addnote-button" value="{{this._id}}">Add A Note</button>
+{{/unless}}
+{{#if this.note}}
+<button type="button" class="addnote-button" value="{{this._id}}">Edit Note</button>
+{{/if}}
+</form>
+</h2>
+<summary>{{this.summary}}</summary>
+<img class="media" src="{{this.img}}">
+</div>
+{{/each}}
