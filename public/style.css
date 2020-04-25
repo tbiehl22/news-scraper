@@ -4,7 +4,7 @@
 }
 
 body {
-	background-color: #eee;
+	background-color: teal;
 }
 
 button {
@@ -28,29 +28,30 @@ header {
 	width: 100%;
 	height: 70px;
 	box-shadow: 0 0 10px #aaa;
-	background-color:black;
+	background-color: lightgrey;
 	opacity: 0.9;
 }
 
 header button {
 	float: left;
 	font-size: 20px;
-	color: #fff;
+	color: teal;
 	height: 100%;
 	min-width: 150px;
 	padding: 0 15px;
+	font-weight: bold;
 }
 
 #all-articles {
-	background-color: #999;
+	background-color:gray;
 }
 
 #saved-articles {
-	background-color: #aaa;
+	background-color: gray;
 }
 
 #refresh-articles {
-	background-color: #bbb;
+	background-color: gray;
 }
 
 #all-articles:hover, #saved-articles:hover, #refresh-articles:hover {
@@ -87,7 +88,7 @@ header button {
 }
 
 #cover {
-	width: 100%;
+	width: 98%;
 }
 
 .story-body {
@@ -99,14 +100,14 @@ header button {
 }
 
 .story-body h2 {
-	background-color: #3e9cfc;
+	background-color: gray;
 }
 
 .story-body a {
 	float: left;
 	display: block;
 	width: 77%;
-	color: #fff;
+	color: lightgray;
 	padding-left: 10px;
 }
 
@@ -142,7 +143,7 @@ header button {
 	margin: auto;
 	text-align: center;
 	padding: 40px 90px;
-	color: #aaa;
+	color: lightgray;
 	background-color: #fff;
 }
 
@@ -155,7 +156,7 @@ header button {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.9);
+    background-color: teal;
     z-index: 4;
 }
 
@@ -191,7 +192,7 @@ header button {
 
 #note-displayer button {
 	min-width: 128px;
-	background-color: #77b9fd;
+	background-color: teal;
 	color: #fff;
 	font-weight: bold;
 	font-size: 20px;
@@ -200,7 +201,7 @@ header button {
 }
 
 #note-displayer button:hover {
-	background-color: #aed4fb;
+	background-color: rgb(0, 204, 255);
 	box-shadow: 0 0 10px #fff;
 }
 
@@ -218,20 +219,5 @@ header button {
 }
 
 #container {
-	margin-bottom: 200px;
-}
-
-footer {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	padding: 10px;
-	width: 100%;
-	text-align: center;
-	background-color: black;
-	color: #ddd;
-	font-size: 15px;
-	border-top: 8px solid #3e9cfc;
-	opacity: 0.7;
-	z-index: 3;
+	margin-bottom: 90px;
 }

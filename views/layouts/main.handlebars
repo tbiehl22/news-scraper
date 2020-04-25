@@ -2,30 +2,30 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-		<link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
+		<link rel="stylesheet" href="style.css" type="text/css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<title>New York Times Scraper</title>
+		<title>The New York Times Scraper</title>
 </head>
 
 <body>
 	<header>
-		<a href="/"><div id="sitename">NYT Scraper</div></a>
+		<a href="/"><div id="sitename">The New York Times</div></a>
 		<a href="/"><button id="all-articles">All Articles</button></a>
 		<a href="/saved"><button id="saved-articles">Saved Articles</button></a>
 		<form action="/scrape" method="GET">
-			<button type="submit" id="refresh-articles">Scrape For Newest Articles</button>
+			<button type="submit" id="refresh-articles">Scrape Articles</button>
 		</form>
 		<form action="/search" method="POST">
 			<button type="submit" id="search-submit">Submit</button>
 			<input type="text" name="search" placeholder="Search for articles" id="search-input">
 		</form>
 	</header>
-	<img id="cover" src="/assets/images/cover.jpg" height="500px">
+	<img id="cover" src="images/nyt.jpg">
 	<div id="container">
 		{{{ body }}}
 	</div>
 	
-	<script src="/assets/javascript/app.js"></script>
+	<script src="./app.js"></script>
 
 	<div id="addnote">
 		<div id="note-displayer">
@@ -42,6 +42,7 @@
 		</div>
 	</div>
 	
-	<script src="/assets/javascript/app.js"></script>
+	
+	<script src="./app.js"></script>
 </body>
 </html>

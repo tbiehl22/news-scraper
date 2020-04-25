@@ -7,31 +7,39 @@ var logger = require("morgan");
 var cheerio = require("cheerio");
 var request = require("request");
 
-var Note = require("./models/Note");
-var Article = require("./models/Article");
-var databaseUrl = 'mongodb://localhost/scrap';
+// Mongoose
 
-if (process.env.MONGODB_URI) {
-	mongoose.connect(process.env.MONGODB_URI);
-}
-else {
-	mongoose.connect(databaseUrl);
-};
-
-mongoose.Promise = Promise;
-var db = mongoose.connection;
-
-db.on("error", function(error) {
-	console.log("Mongoose Error: ", error);
-});
-
-db.once("open", function() {
-	console.log("Mongoose connection successful.");
-});
-
+// var Note = require("./models/Note");
+// var Article = require("./models/Article");
+var db = require("./models");
 
 var app = express();
 var port = process.env.PORT || 3000;
+
+
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_g7hs7ps3:Selobo89@ds163680.mlab.com:63680/heroku_g7hs7ps3";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/news-scraper";
+
+// mongoose.connect("mongodb://localhost/news-scraper", { useNewUrlParser: true });
+
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+});
+
+
+
+// var db = mongoose.connection;
+
+// db.on("error", function(error) {
+// 	console.log("Mongoose Error: ", error);
+// });
+
+// db.once("open", function() {
+// 	console.log("Mongoose connection successful.");
+// });
+
+
+// app set-ups
 
 app.use(logger("dev"));
 app.use(express.static("public"));
@@ -40,15 +48,13 @@ app.use(method("_method"));
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
-app.listen(port, function() {
-	console.log("Listening on port " + port);
-})
 
+// Routes
 
 app.get("/", function(req, res) {
-	Article.find({}, null, {sort: {created: -1}}, function(err, data) {
+	db.Article.find({}, null, {sort: {created: -1}}, function(err, data) {
 		if(data.length === 0) {
-			res.render("placeholder", {message: "There's nothing scraped yet. Please click \"Scrape For Newest Articles\" for fresh and delicious news."});
+			res.render("placeholder", {message: "There's nothing scraped yet. Please click \"Scrape Articles\" for fresh news."});
 		}
 		else{
 			res.render("index", {articles: data});
@@ -91,9 +97,9 @@ app.get("/scrape", function(req, res) {
 });
 
 app.get("/saved", function(req, res) {
-	Article.find({issaved: true}, null, {sort: {created: -1}}, function(err, data) {
+	db.Article.find({issaved: true}, null, {sort: {created: -1}}, function(err, data) {
 		if(data.length === 0) {
-			res.render("placeholder", {message: "You have not saved any articles yet. Try to save some delicious news by simply clicking \"Save Article\"!"});
+			res.render("placeholder", {message: "You have not saved any articles yet. Try to save some news by clicking \"Save Article\"!"});
 		}
 		else {
 			res.render("saved", {saved: data});
@@ -102,14 +108,14 @@ app.get("/saved", function(req, res) {
 });
 
 app.get("/:id", function(req, res) {
-	Article.findById(req.params.id, function(err, data) {
+	db.Article.findById(req.params.id, function(err, data) {
 		res.json(data);
 	})
 })
 
 app.post("/search", function(req, res) {
 	console.log(req.body.search);
-	Article.find({$text: {$search: req.body.search, $caseSensitive: false}}, null, {sort: {created: -1}}, function(err, data) {
+	db.Article.find({$text: {$search: req.body.search, $caseSensitive: false}}, null, {sort: {created: -1}}, function(err, data) {
 		console.log(data);
 		if (data.length === 0) {
 			res.render("placeholder", {message: "Nothing has been found. Please try other keywords."});
@@ -121,7 +127,7 @@ app.post("/search", function(req, res) {
 });
 
 app.post("/save/:id", function(req, res) {
-	Article.findById(req.params.id, function(err, data) {
+	db.Article.findById(req.params.id, function(err, data) {
 		if (data.issaved) {
 			Article.findByIdAndUpdate(req.params.id, {$set: {issaved: false, status: "Save Article"}}, {new: true}, function(err, data) {
 				res.redirect("/");
@@ -153,4 +159,8 @@ app.get("/note/:id", function(req, res) {
 	Article.findById(id).populate("note").exec(function(err, data) {
 		res.send(data.note);
 	})
+})
+
+app.listen(port, function() {
+	console.log("Listening on port " + port);
 })

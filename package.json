@@ -3,18 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "dependencies": {
-    "axios": "^0.19.2",
-    "cheerio": "^1.0.0-rc.3",
-    "express": "^4.17.1",
-    "express-handlebars": "^4.0.3",
-    "method-override": "^3.0.0",
-    "mongojs": "^3.1.0",
-    "mongoose": "^5.9.10",
-    "morgan": "^1.10.0",
-    "request": "^2.88.2"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -28,5 +16,16 @@
   "bugs": {
     "url": "https://github.com/tbiehl22/news-scraper/issues"
   },
-  "homepage": "https://github.com/tbiehl22/news-scraper#readme"
+  "homepage": "https://github.com/tbiehl22/news-scraper#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.3",
+    "method-override": "^3.0.0",
+    "mongodb": "^3.5.6",
+    "mongoose": "^5.9.10",
+    "morgan": "^1.10.0",
+    "request": "^2.88.2"
+  }
 }
