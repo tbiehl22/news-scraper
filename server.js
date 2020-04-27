@@ -7,10 +7,9 @@ var logger = require("morgan");
 var cheerio = require("cheerio");
 var request = require("request");
 
-// Mongoose
 
-var Note = require("./models/Note");
-var Article = require("./models/Article");
+// var Note = require("./models/Note");
+// var Article = require("./models/Article");
 var db = require("./models");
 
 var app = express();
@@ -27,20 +26,6 @@ mongoose.connect(MONGODB_URI, {
 });
 
 
-
-// var db = mongoose.connection;
-
-// db.on("error", function(error) {
-// 	console.log("Mongoose Error: ", error);
-// });
-
-// db.once("open", function() {
-// 	console.log("Mongoose connection successful.");
-// });
-
-
-// app set-ups
-
 app.use(logger("dev"));
 app.use(express.static("public"));
 app.use(body.urlencoded({extended: false}));
@@ -48,8 +33,6 @@ app.use(method("_method"));
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
-
-// Routes
 
 app.get("/", function(req, res) {
 	db.Article.find({}, null, {sort: {created: -1}}, function(err, data) {
