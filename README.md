@@ -1,7 +1,7 @@
 # All the News That's Fit to Scrape
 
 
-![picture](images/news-scraper.png)
+![picture](public/images/news-scraper.png)
 
 ### Overview
 
