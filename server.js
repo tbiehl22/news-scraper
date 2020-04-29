@@ -35,8 +35,8 @@ app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
 
-app.get("/", function(req, res) {
-	db.Article.find({}, null, {sort: {created: -1}}, function(err, data) {
+app.get("/", function(req, res)  {
+	db.Article.find({}, null, {sort: {created: -1}}, function(err, data)  {
 		if(data.length === 0) {
 			res.render("placeholder", {message: "There's nothing scraped yet. Please click \"Scrape Articles\" for fresh news."});
 		}
