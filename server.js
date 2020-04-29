@@ -8,9 +8,10 @@ var cheerio = require("cheerio");
 var request = require("request");
 
 
-var Note = require("./models/Note");
-var Article = require("./models/Article");
-var db = require("./models");
+// var Note = require("./models/Note");
+// var Article = require("./models/Article");
+// var db = require("./models");
+var db = require("./models/index");
 
 var app = express();
 var port = process.env.PORT || 3000;
